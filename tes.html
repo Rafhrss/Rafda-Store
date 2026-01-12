@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamis Syar'i Store | Keanggunan dalam Kesantunan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0">
+                    <h1 class="font-serif text-3xl font-bold text-stone-700 tracking-wider">AL-AURA</h1>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide uppercase">
+                    <a href="#" class="hover:text-stone-500 transition">Koleksi</a>
+                    <a href="#" class="hover:text-stone-500 transition">Terbaru</a>
+                    <a href="#" class="hover:text-stone-500 transition">Tentang Kami</a>
+                </div>
+                <div class="flex items-center space-x-5">
+                    <button class="hover:text-stone-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></button>
+                    <button class="relative hover:text-stone-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                        <span class="absolute -top-1 -right-1 bg-stone-700 text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-[80vh] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=2000" alt="Gamis Banner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/20"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <h2 class="font-serif text-5xl md:text-7xl mb-6">Kemurnian dalam <br>Balutan Syari</h2>
+            <p class="max-w-md text-lg mb-8 font-light">Koleksi eksklusif dengan bahan premium yang menjaga kenyamanan ibadah dan aktivitas harian Anda.</p>
+            <a href="#koleksi" class="inline-block bg-white text-stone-800 px-8 py-4 text-sm font-semibold uppercase tracking-widest hover:bg-stone-100 transition">Lihat Produk</a>
+        </div>
+    </section>
+
+    <section id="koleksi" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h3 class="font-serif text-4xl text-stone-800">Koleksi Terbaru</h3>
+            <div class="w-20 h-0.5 bg-stone-300 mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="group cursor-pointer">
+                <div class="relative aspect-3/4 overflow-hidden bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=1000" alt="Gamis 1" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
+                        <button class="w-full py-2 text-xs font-bold uppercase tracking-tighter">Cek Detail</button>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4 class="text-sm font-medium text-gray-900">Fatima Series - Sage Green</h4>
+                    <p class="text-stone-500 mt-1">Rp 459.000</p>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="relative aspect-3/4 overflow-hidden bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000" alt="Gamis 2" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
+                        <button class="w-full py-2 text-xs font-bold uppercase tracking-tighter">Cek Detail</button>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4 class="text-sm font-medium text-gray-900">Aisha Set - Dusty Rose</h4>
+                    <p class="text-stone-500 mt-1">Rp 525.000</p>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="relative aspect-3/4 overflow-hidden bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=1000" alt="Gamis 3" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
+                        <button class="w-full py-2 text-xs font-bold uppercase tracking-tighter">Cek Detail</button>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <h4 class="text-sm font-medium text-gray-900">Khadijah Abaya - Midnight Black</h4>
+                    <p class="text-stone-500 mt-1">Rp 399.000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone-900 text-stone-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-2">
+                    <h2 class="font-serif text-3xl text-white mb-6 tracking-widest">AL-AURA</h2>
+                    <p class="max-w-sm text-sm leading-relaxed">
+                        Menyediakan busana muslimah yang memenuhi kaidah syar'i tanpa mengesampingkan estetika dan kenyamanan. Setiap jahitan adalah dedikasi kami untuk Anda.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6 uppercase text-xs tracking-widest">Bantuan</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Cara Order</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pengiriman</a></li>
+                        <li><a href="#" class="hover:text-white transition">Kebijakan Pengembalian</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6 uppercase text-xs tracking-widest">Kontak</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li>WhatsApp: +62 812 3456 789</li>
+                        <li>Email: salam@alaura.com</li>
+                        <li>Instagram: @alaura.syari</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 mt-16 pt-8 text-center text-xs">
+                <p>&copy; 2024 AL-AURA Syari Official Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
