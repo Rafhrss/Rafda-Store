@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
       <section className="relative h-[80vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=2000" alt="Gamis Banner" className="w-full h-full object-cover" />
+            <img src="assets/images/gamis7.jpeg" alt="Gamis Banner" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/20"></div>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">

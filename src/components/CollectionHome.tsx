@@ -11,7 +11,7 @@ const CollectionHome = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="group cursor-pointer">
                 <div className="relative aspect-3/4 overflow-hidden bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=1000" alt="Gamis 1" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+                    <img src="assets/images/kokoh2.jpeg" alt="Gamis 1" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
                         <button className="w-full py-2 text-xs font-bold uppercase tracking-tighter">Cek Detail</button>
                     </div>
@@ -24,7 +24,7 @@ const CollectionHome = () => {
 
             <div className="group cursor-pointer">
                 <div className="relative aspect-3/4 overflow-hidden bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000" alt="Gamis 2" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+                    <img src="assets/images/lengan.jpeg" alt="Gamis 2" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
                         <button className="w-full py-2 text-xs font-bold uppercase tracking-tighter">Cek Detail</button>
                     </div>
@@ -37,7 +37,7 @@ const CollectionHome = () => {
 
             <div className="group cursor-pointer">
                 <div className="relative aspect-3/4 overflow-hidden bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=1000" alt="Gamis 3" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+                    <img src="assets/images/setfamily.jpeg" alt="Gamis 3" className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
                         <button className="w-full py-2 text-xs font-bold uppercase tracking-tighter">Cek Detail</button>
                     </div>
