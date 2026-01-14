@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,14 +45,13 @@ const Navbar = () => {
 
           {/* Logo */}
           <div className="shrink-0">
-            <h1 className="font-serif text-3xl font-bold tracking-wider text-stone-700">
-              Rafda Syar'i
+            <h1 className="font-serif text-3xl font-bold tracking-wider text-stone-700"><a href="/">Rafda Syar'i</a>
             </h1>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 text-sm font-medium tracking-wide uppercase text-stone-600">
-            <a href="#" className="hover:text-stone-900 transition">Koleksi</a>
+            <Link to="/koleksi" className="hover:text-stone-900 transition">Koleksi</Link>
             <a href="#" className="hover:text-stone-500 transition">Terbaru</a>
             <a href="#" className="hover:text-stone-500 transition">Tentang Kami</a>
           </div>
@@ -80,7 +80,7 @@ const Navbar = () => {
         }`}
       >
         <div className="px-4 pt-4 pb-8 space-y-5 text-center">
-          <a href="#" className="block text-sm font-medium uppercase tracking-widest text-stone-700">Koleksi</a>
+          <Link to="/koleksi" className="block text-sm font-medium uppercase tracking-widest text-stone-700">Koleksi</Link>
           <a href="#" className="block text-sm font-medium uppercase tracking-widest text-stone-700">Terbaru</a>
           <a href="#" className="block text-sm font-medium uppercase tracking-widest text-stone-700">Tentang Kami</a>
         </div>
