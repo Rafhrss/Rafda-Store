@@ -1,6 +1,6 @@
 import terbaru1 from "../assets/terbaru/.jpeg";
-import terbaru2 from "../assets/terbaru/.jpeg";
-import terbaru3 from "../assets/terbaru/.jpeg";
+// import terbaru2 from "../assets/terbaru/.jpeg";
+// import terbaru3 from "../assets/terbaru/.jpeg";
 
 
 // Definisikan Interface untuk keamanan data (TypeScript)
