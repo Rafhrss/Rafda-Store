@@ -1,51 +1,24 @@
-// import React from 'react'
-
-interface Product {
-  id: number;
-  name: string;
-  series: string;
-  price: string;
-  image: string;
-  isLimited: boolean;
-}
+import { listProducts } from "../data/products";
 
 const Terbaru = () => {
-  const newReleases: Product[] = [
-    {
-      id: 1,
-      name: "MALAIKA ABAYA SET",
-      series: "Ramadan Signature 2024",
-      price: "749.000",
-      image: "/assets/images/gamis.jpeg",
-      isLimited: true
-    },
-    {
-      id: 2,
-      name: "ZAHRA SILK SERIES",
-      series: "Eternal Bloom",
-      price: "585.000",
-      image: "/assets/images/gamis2.jpeg",
-      isLimited: false
-    },
-    {
-      id: 3,
-      name: "LAYLA DAILY GAMIS",
-      series: "Essential Series",
-      price: "325.000",
-      image: "/assets/images/gamis3.jpeg",
-      isLimited: false
-    }
-  ];
+  // Mengambil produk yang memiliki properti isNew: true
+  const newReleases = listProducts.filter(product => product.isNew);
+
+  // Mengambil gambar untuk Hero Banner (contoh: ID 5 atau ID pertama dari newReleases)
+  const heroImage = newReleases[0]?.gambar;
+
+  // Mengambil gambar untuk Section Highlight (contoh: ID 3)
+  const highlightProduct = listProducts.find(p => p.id === 3);
 
   return (
     <div className="bg-white">
-      {/* SECTION 1: HERO REVEAL - Menarik perhatian instan */}
+      {/* SECTION 1: HERO REVEAL */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-stone-100">
         <div className="absolute inset-0 opacity-40">
           <img 
-            src="/assets/images/gamis.jpeg" 
+            src={heroImage} 
             className="w-full h-full object-cover scale-110 blur-sm" 
-            alt="New Season"
+            alt="New Season Background"
           />
         </div>
         <div className="relative text-center px-4">
@@ -75,59 +48,53 @@ const Terbaru = () => {
                 index === 0 ? "md:col-span-8" : "md:col-span-4"
               }`}
             >
-              <div className="relative overflow-hidden aspect-4/5 md:aspect-auto md:h-150 bg-stone-50">
+              <div className="relative overflow-hidden aspect-4/5 md:aspect-auto md:h-125 bg-stone-50">
                 <img 
-                  src={product.image} 
-                  alt={product.name}
+                  src={product.gambar} 
+                  alt={product.nama}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
                 
-                {/* Badge Status */}
                 <div className="absolute top-6 left-6 space-y-2">
                   <span className="block bg-white/90 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 shadow-sm text-stone-800">
                     New Release
                   </span>
-                  {product.isLimited && (
-                    <span className="block bg-stone-800 text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 shadow-sm">
-                      Limited Edition
-                    </span>
-                  )}
                 </div>
-
-                {/* Overlay Info (Hanya muncul saat hover di Desktop) */}
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
 
               <div className="mt-6 flex justify-between items-start">
                 <div>
-                  <span className="text-[10px] text-stone-400 uppercase tracking-widest">{product.series}</span>
-                  <h3 className="font-serif text-xl text-stone-800 mt-1 uppercase">{product.name}</h3>
+                  <span className="text-[10px] text-stone-400 uppercase tracking-widest">{product.kategori}</span>
+                  <h3 className="font-serif text-xl text-stone-800 mt-1 uppercase">{product.nama}</h3>
                 </div>
-                <p className="text-sm font-medium text-stone-700">Rp {product.price}</p>
+                <p className="text-sm font-medium text-stone-700">
+                  Rp {product.harga.toLocaleString('id-ID')}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* SECTION 3: SERIES HIGHLIGHT - Tampilan Wide */}
+      {/* SECTION 3: SERIES HIGHLIGHT */}
       <section className="bg-stone-50 py-20 px-4">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-1/2">
             <img 
-              src="/assets/images/gamis3.jpeg" 
+              src={highlightProduct?.gambar} 
               className="w-full h-125 object-cover shadow-2xl" 
-              alt="Highlight"
+              alt="Highlight Series"
             />
           </div>
           <div className="w-full md:w-1/2 space-y-6">
             <h3 className="text-xs font-bold tracking-[0.3em] uppercase text-stone-400">Series Spotlight</h3>
-            <h2 className="font-serif text-4xl text-stone-800 leading-tight">Kelembutan Bahan Silk yang Mempesona</h2>
+            <h2 className="font-serif text-4xl text-stone-800 leading-tight">{highlightProduct?.nama}</h2>
             <p className="text-stone-600 leading-relaxed text-sm">
-              Dirancang khusus untuk momen istimewa, Zahra Silk Series memberikan kilau alami yang mewah namun tetap syar'i dengan potongan yang longgar dan anggun.
+              Dirancang khusus untuk momen istimewa, koleksi ini memberikan kenyamanan premium namun tetap syar'i dengan potongan yang anggun.
             </p>
             <button className="bg-stone-800 text-white px-10 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-stone-700 transition shadow-lg">
-              Explore Zahra Series
+              Explore Now
             </button>
           </div>
         </div>

@@ -71,7 +71,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: Gamis6,
     kategori: "Gamis",
-    isNew: false
+    isNew: true
   },
   {
     id: 7,
@@ -80,6 +80,6 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: Gamis7,
     kategori: "Gamis",
-    isNew: false
+    isNew: true
   },
 ];

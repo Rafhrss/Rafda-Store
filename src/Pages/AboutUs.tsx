@@ -1,6 +1,8 @@
-// import React from 'react'
+import { listProducts } from "../data/products"
 
 const AboutUs = () => {
+  const heroProduct = listProducts.find(product => product.id === 7);
+
   const stats = [
     { label: 'Tahun Berjalan', value: '3+' },
     { label: 'Produk Terjual', value: '10k+' },
@@ -31,8 +33,8 @@ const AboutUs = () => {
           <div className="relative">
             <div className="aspect-4/5 overflow-hidden rounded-sm shadow-2xl">
               <img 
-                src="/assets/images/gamis2.jpeg" 
-                alt="Rafda Journey" 
+                src={heroProduct?.gambar} 
+                alt={heroProduct?.nama}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -56,7 +58,7 @@ const AboutUs = () => {
             <div className="pt-4 grid grid-cols-2 gap-8">
               {stats.map((stat, index) => (
                 <div key={index}>
-                  <p className="text-2xl font-serif text-stone-800">{stat.value}</p>
+                  <p className="text-2xl text-stone-800">{stat.value}</p>
                   <p className="text-[10px] uppercase tracking-widest text-stone-400 mt-1">{stat.label}</p>
                 </div>
               ))}

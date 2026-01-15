@@ -1,18 +1,19 @@
 import  { useState } from 'react'
 import { listProducts } from "../data/products"
+import { listCategories } from '../data/categories';
 
 interface FilterState {
   availability: boolean;
-  price: boolean;
+  // price: boolean;
   productType: boolean;
 }
 
 const Collections = () => {
   // State untuk kontrol buka/tutup filter
   const [openFilters, setOpenFilters] = useState<FilterState>({
-    availability: true,
-    price: true,
-    productType: true
+    availability: false,
+    // price: true,
+    productType: false
   });
 
   // Fungsi toggle filter
@@ -72,10 +73,14 @@ const Collections = () => {
             </button>
             <div className={`transition-all duration-300 overflow-hidden ${openFilters.productType ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
               <ul className="text-sm text-gray-600 space-y-3">
-                <li className="hover:text-stone-800 cursor-pointer">Aksesoris (5)</li>
-                <li className="hover:text-stone-800 cursor-pointer font-semibold text-stone-900 underline decoration-1 underline-offset-4">Gamis (33)</li>
-                <li className="hover:text-stone-800 cursor-pointer">Gamis Khimar Set (8)</li>
-                <li className="hover:text-stone-800 cursor-pointer">Khimar & Bergo (12)</li>
+                {listCategories.map((category) => (
+                  <li 
+                    key={category.id} 
+                    className="hover:text-stone-800 cursor-pointer flex justify-between items-center transition">
+                    <span>{category.name}</span>
+                    <span className="text-[10px] text-gray-400">({category.count})</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
