@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { listProducts } from "../data/products"
 
 const HomePage = () => {
@@ -37,32 +38,34 @@ const HomePage = () => {
         {/* GRID PRODUK OTOMATIS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {displayProducts.map((product) => (
-            <div key={product.id} className="group cursor-pointer">
-              <div className="relative aspect-3/4 overflow-hidden bg-gray-200">
-                {/* Gambar diambil otomatis dari data.ts */}
-                <img 
-                  src={product.gambar} 
-                  alt={product.nama} 
-                  className="w-full h-full object-cover transition duration-700 group-hover:scale-105" 
-                />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
-                  <button className="w-full py-2 text-xs font-bold uppercase tracking-tighter hover:bg-stone-800 hover:text-white transition">
-                    Cek Detail
-                  </button>
+            <Link to={`/detail/${product.id}`} key={product.id}>
+              <div key={product.id} className="group cursor-pointer">
+                <div className="relative aspect-3/4 overflow-hidden bg-gray-200">
+                  {/* Gambar diambil otomatis dari data.ts */}
+                  <img 
+                    src={product.gambar} 
+                    alt={product.nama} 
+                    className="w-full h-full object-cover transition duration-700 group-hover:scale-105" 
+                  />
+                  
+                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition bg-white/90 backdrop-blur-sm">
+                    <button className="w-full py-2 text-xs font-bold uppercase tracking-tighter hover:bg-stone-800 hover:text-white transition">
+                      Cek Detail
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mt-4 text-center">
+                  <h4 className="text-sm font-medium text-gray-900 uppercase tracking-wide">
+                    {product.nama}
+                  </h4>
+                  <p className="text-stone-500 mt-1 font-semibold">
+                    {/* Format mata uang Rupiah otomatis */}
+                    Rp {product.harga.toLocaleString('id-ID')}
+                  </p>
                 </div>
               </div>
-
-              <div className="mt-4 text-center">
-                <h4 className="text-sm font-medium text-gray-900 uppercase tracking-wide">
-                  {product.nama}
-                </h4>
-                <p className="text-stone-500 mt-1 font-semibold">
-                  {/* Format mata uang Rupiah otomatis */}
-                  Rp {product.harga.toLocaleString('id-ID')}
-                </p>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

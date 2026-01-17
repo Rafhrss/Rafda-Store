@@ -1,4 +1,3 @@
-// Import semua gambar
 import Gamis1 from "../assets/images/gamis.jpeg";
 import Gamis2 from "../assets/images/gamis2.jpeg";
 import Gamis3 from "../assets/images/gamis3.jpeg";
@@ -23,6 +22,7 @@ export interface Product {
   hargaCoret?: number; // Opsional
   gambar: string;
   kategori: string;
+  isAvailability: boolean;
   isNew: boolean;
 }
 
@@ -34,6 +34,7 @@ export const listProducts: Product[] = [
     hargaCoret: 135000,
     gambar: Gamis1,
     kategori: "gamis",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -43,6 +44,7 @@ export const listProducts: Product[] = [
     hargaCoret: 129000,
     gambar: Gamis2,
     kategori: "khimar-bergo",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -52,6 +54,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: Gamis3,
     kategori: "Gamis",
+    isAvailability: false,
     isNew: false
   },
   {
@@ -61,6 +64,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: Gamis4,
     kategori: "Gamis",
+    isAvailability: false,
     isNew: false
   },
   {
@@ -70,6 +74,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: Gamis5,
     kategori: "Gamis",
+    isAvailability: false,
     isNew: false
   },
   {
@@ -79,6 +84,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: Gamis6,
     kategori: "Gamis",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -88,6 +94,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: Gamis7,
     kategori: "Gamis",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -97,6 +104,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: kokoh1,
     kategori: "kokoh",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -106,6 +114,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: kokoh2,
     kategori: "kokoh",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -115,6 +124,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: lengan1,
     kategori: "Aksesoris",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -124,6 +134,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: lengan2,
     kategori: "Aksesoris",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -133,6 +144,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: mukena1,
     kategori: "Aksesoris",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -142,6 +154,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: mukena2,
     kategori: "Aksesoris",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -151,6 +164,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: setfamily1,
     kategori: "Aksesoris",
+    isAvailability: true,
     isNew: true
   },
   {
@@ -160,6 +174,7 @@ export const listProducts: Product[] = [
     hargaCoret: 310000,
     gambar: setfamily2,
     kategori: "Aksesoris",
+    isAvailability: true,
     isNew: true
   },
 ];

@@ -14,7 +14,7 @@ const Detail = () => {
   if (!product) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <p className="text-stone-500">Produk tidak ditemukan. <Link to="/collections" className="underline">Kembali</Link></p>
+        <p className="text-stone-500">Produk tidak ditemukan. <Link to="/koleksi" className="underline">Kembali</Link></p>
       </div>
     );
   }
@@ -26,7 +26,7 @@ const Detail = () => {
       {/* Breadcrumb Navigasi */}
       <nav className="text-[10px] uppercase tracking-widest text-stone-400 mb-8">
         <Link to="/" className="hover:text-stone-800">Home</Link> / 
-        <Link to="/collections" className="mx-2 hover:text-stone-800">Collections</Link> / 
+        <Link to="/koleksi" className="mx-2 hover:text-stone-800">Koleksi</Link> / 
         <span className="text-stone-800">{product.nama}</span>
       </nav>
 

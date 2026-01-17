@@ -5,10 +5,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Fungsi untuk menutup menu mobile
+  const closeMenu = () => setIsOpen(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      // Navbar muncul hanya jika scroll lebih dari 50px
-      // Anda bisa mengatur angkanya menjadi 10 jika ingin langsung muncul saat scroll sedikit
       setIsScrolled(window.scrollY > 50);
     };
 
@@ -43,9 +44,10 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Logo */}
+          {/* Logo - Tambahkan closeMenu juga di sini jika logo diklik */}
           <div className="shrink-0">
-            <h1 className="font-serif text-3xl font-bold tracking-wider text-stone-700"><Link to="/">Rafda Syar'i</Link>
+            <h1 className="font-serif text-3xl font-bold tracking-wider text-stone-700">
+              <Link to="/" onClick={closeMenu}>Rafda Syar'i</Link>
             </h1>
           </div>
 
@@ -76,17 +78,35 @@ const Navbar = () => {
       {/* Mobile Dropdown */}
       <div 
         className={`md:hidden transition-all duration-300 bg-white border-t border-gray-100 overflow-hidden ${
-          isOpen ? 'max-h-64' : 'max-h-0'
+          isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="px-4 pt-4 pb-8 space-y-5 text-center">
-          <Link to="/koleksi" className="block text-sm font-medium uppercase tracking-widest text-stone-700">Koleksi</Link>
-          <Link to="/terbaru" className="block text-sm font-medium uppercase tracking-widest text-stone-700">Terbaru</Link>
-          <Link to="/aboutus" className="block text-sm font-medium uppercase tracking-widest text-stone-700">Tentang Kami</Link>
+          {/* Tambahkan onClick={closeMenu} pada setiap Link */}
+          <Link 
+            to="/koleksi" 
+            onClick={closeMenu}
+            className="block text-sm font-medium uppercase tracking-widest text-stone-700"
+          >
+            Koleksi
+          </Link>
+          <Link 
+            to="/terbaru" 
+            onClick={closeMenu}
+            className="block text-sm font-medium uppercase tracking-widest text-stone-700"
+          >
+            Terbaru
+          </Link>
+          <Link 
+            to="/aboutus" 
+            onClick={closeMenu}
+            className="block text-sm font-medium uppercase tracking-widest text-stone-700"
+          >
+            Tentang Kami
+          </Link>
         </div>
       </div>
     </nav>
   );
 };
-
 export default Navbar;

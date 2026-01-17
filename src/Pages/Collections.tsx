@@ -1,56 +1,89 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { listProducts } from "../data/products"
 import { listCategories } from '../data/categories';
-import { Link } from 'react-router-dom' // Import Link untuk navigasi
-
-interface FilterState {
-  availability: boolean;
-  productType: boolean;
-}
+import { Link } from 'react-router-dom'
 
 const Collections = () => {
-  // 1. Tambahkan State untuk melacak kategori yang dipilih
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [inStockOnly, setInStockOnly] = useState<boolean>(false);
+  
+  // 1. Tambahkan State untuk Sorting
+  const [sortBy, setSortBy] = useState<string>('default');
 
-  // State untuk kontrol buka/tutup filter sidebar
-  const [openFilters, setOpenFilters] = useState<FilterState>({
-    availability: false,
-    productType: false
+  const [openFilters, setOpenFilters] = useState({
+    availability: true,
+    productType: true
   });
 
-// --- FUNGSI BARU: MENGHITUNG JUMLAH PRODUK SECARA DINAMIS ---
-  const getCategoryCount = (categorySlug: string) => {
-    return listProducts.filter(
-      (product) => product.kategori.toLowerCase() === categorySlug.toLowerCase()
-    ).length;
-  };
-
-  const toggleFilter = (section: keyof FilterState) => {
+  const toggleFilter = (section: keyof typeof openFilters) => {
     setOpenFilters(prev => ({ ...prev, [section]: !prev[section] }));
   };
 
-  // 2. LOGIKA FILTERING: Filter produk berdasarkan selectedCategory
-  const filteredProducts = selectedCategory === 'all' 
-    ? listProducts 
-    : listProducts.filter(product => 
-        // Menggunakan toLowerCase() agar "Gamis" dan "gamis" dianggap sama
-        product.kategori.toLowerCase() === selectedCategory.toLowerCase()
-      );
+  // 2. LOGIKA FILTERING & SORTING (Digabung dalam useMemo untuk performa)
+  const filteredAndSortedProducts = useMemo(() => {
+    // Jalankan Filtering terlebih dahulu
+    const result = listProducts.filter(product => {
+      const matchCategory = selectedCategory === 'all' || product.kategori.toLowerCase() === selectedCategory.toLowerCase();
+      const matchAvailability = inStockOnly ? product.isAvailability : true;
+      return matchCategory && matchAvailability;
+    });
+
+    // Jalankan Sorting berdasarkan pilihan user
+    if (sortBy === 'price-low') {
+      result.sort((a, b) => a.harga - b.harga);
+    } else if (sortBy === 'price-high') {
+      result.sort((a, b) => b.harga - a.harga);
+    } else if (sortBy === 'name-az') {
+      result.sort((a, b) => a.nama.localeCompare(b.nama));
+    }
+
+    return result;
+  }, [selectedCategory, inStockOnly, sortBy]);
+
+  const getCategoryCount = (categorySlug: string) => {
+    return listProducts.filter((product) => {
+      const matchCategory = product.kategori.toLowerCase() === categorySlug.toLowerCase();
+      if (inStockOnly) return matchCategory && product.isAvailability;
+      return matchCategory;
+    }).length;
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex justify-between items-center border-b border-gray-200 pb-4 mb-8 text-xs tracking-widest text-gray-500 uppercase">
-        {/* Update jumlah produk berdasarkan hasil filter */}
-        <span>{filteredProducts.length} PRODUCTS</span>
-        <div className="flex items-center gap-2 cursor-pointer">SORT BY ↓</div>
+      
+      {/* 3. HEADER: PRODUCT COUNT (TENGAH & BIRU MUDA) & SORT BY */}
+      <div className="flex flex-col md:flex-row justify-between items-center border-b border-gray-200 pb-6 mb-8 gap-4">
+        
+        {/* Placeholder agar Count tetap di tengah pada desktop */}
+        <div className="hidden md:block w-32"></div>
+
+        {/* Product Count Box */}
+        <div className="bg-sky-300 px-8 py-3 rounded-full border border-sky-50 shadow-sm">
+          <span className="text-xs font-bold tracking-[0.2em] text-sky-900 uppercase">
+            {filteredAndSortedProducts.length} Products
+          </span>
+        </div>
+
+        {/* Sort By Dropdown */}
+        <div className="flex items-center gap-3">
+          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Sort By</label>
+          <select 
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="text-[10px] font-bold uppercase tracking-widest text-stone-700 bg-transparent border-none focus:ring-0 cursor-pointer outline-none"
+          >
+            <option value="default">Featured</option>
+            <option value="name-az">Alphabetically, A-Z</option>
+            <option value="price-low">Price, Low to High</option>
+            <option value="price-high">Price, High to Low</option>
+          </select>
+        </div>
       </div>
 
       <div className="flex flex-col md:flex-row gap-10">
-        
         {/* SIDEBAR FILTER */}
         <aside className="w-full md:w-64 space-y-6">
-          
-          {/* Availability Filter */}
+          {/* Availability */}
           <div className="border-b border-gray-100 pb-4">
             <button onClick={() => toggleFilter('availability')} className="w-full flex justify-between items-center text-xs font-bold tracking-widest uppercase mb-4">
               Availability 
@@ -59,16 +92,19 @@ const Collections = () => {
               </svg>
             </button>
             <div className={`transition-all duration-300 overflow-hidden ${openFilters.availability ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-9 h-5 bg-gray-200 rounded-full relative cursor-pointer">
-                  <div className="absolute left-1 top-1 bg-white w-3 h-3 rounded-full shadow-sm"></div>
+              <div 
+                className="flex items-center gap-3 text-sm text-gray-600 cursor-pointer"
+                onClick={() => setInStockOnly(!inStockOnly)}
+              >
+                <div className={`w-9 h-5 rounded-full relative transition-colors ${inStockOnly ? 'bg-stone-800' : 'bg-gray-200'}`}>
+                  <div className={`absolute top-1 bg-white w-3 h-3 rounded-full shadow transition-all ${inStockOnly ? 'left-5' : 'left-1'}`}></div>
                 </div>
-                In stock only
+                <span className={inStockOnly ? 'text-stone-800 font-medium' : ''}>In stock only</span>
               </div>
             </div>
           </div>
 
-          {/* Product Type Filter */}
+          {/* Product Type */}
           <div className="border-b border-gray-100 pb-4">
             <button onClick={() => toggleFilter('productType')} className="w-full flex justify-between items-center text-xs font-bold tracking-widest uppercase mb-4">
               Product Type
@@ -78,24 +114,14 @@ const Collections = () => {
             </button>
             <div className={`transition-all duration-300 overflow-hidden ${openFilters.productType ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
               <ul className="text-sm text-gray-600 space-y-3">
-                <li 
-                  onClick={() => setSelectedCategory('all')}
-                  className={`cursor-pointer transition flex justify-between items-center ${selectedCategory === 'all' ? 'text-stone-900 font-bold underline underline-offset-4 decoration-1' : 'hover:text-stone-800'}`}
-                >
+                <li onClick={() => setSelectedCategory('all')} className={`cursor-pointer flex justify-between ${selectedCategory === 'all' ? 'text-stone-900 font-bold underline underline-offset-4' : 'hover:text-stone-800'}`}>
                   <span>All Collections</span>
-                  {/* Menampilkan total semua produk */}
-                  <span className="text-[10px] text-gray-400">({listProducts.length})</span>
+                  <span className="text-[10px]">({listProducts.length})</span>
                 </li>
-
                 {listCategories.map((category) => (
-                  <li 
-                    key={category.id} 
-                    onClick={() => setSelectedCategory(category.slug)}
-                    className={`cursor-pointer flex justify-between items-center transition ${selectedCategory === category.slug ? 'text-stone-900 font-bold underline underline-offset-4 decoration-1' : 'hover:text-stone-800'}`}
-                  >
+                  <li key={category.id} onClick={() => setSelectedCategory(category.slug)} className={`cursor-pointer flex justify-between ${selectedCategory === category.slug ? 'text-stone-900 font-bold underline underline-offset-4' : 'hover:text-stone-800'}`}>
                     <span>{category.name}</span>
-                    {/* MEMANGGIL FUNGSI COUNTING DINAMIS */}
-                    <span className="text-[10px] text-gray-400">({getCategoryCount(category.slug)})</span>
+                    <span className="text-[10px]">({getCategoryCount(category.slug)})</span>
                   </li>
                 ))}
               </ul>
@@ -105,57 +131,33 @@ const Collections = () => {
 
         {/* PRODUCT GRID */}
         <main className="flex-1">
-          {/* Tampilkan pesan jika produk tidak ditemukan */}
-          {filteredProducts.length === 0 ? (
-            <div className="text-center py-20 text-gray-500">
-              <p>Maaf, produk dalam kategori ini belum tersedia.</p>
-              <button onClick={() => setSelectedCategory('all')} className="mt-4 text-xs font-bold underline uppercase tracking-widest">Lihat Semua Produk</button>
-            </div>
-          ) : (
-            /* PERUBAHAN DISINI: Tambahkan grid-cols-2 agar mobile tampil 2 kolom */
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 md:gap-x-6 gap-y-8 md:gap-y-12">
-            {filteredProducts.map((product) => (
-              /* GUNAKAN LINK: Navigasi ke /detail/id_produk */
-              <Link 
-                to={`/detail/${product.id}`} 
-                key={product.id} 
-                className="group cursor-pointer"
-              >
-                <div className="relative aspect-3/4 overflow-hidden bg-gray-100">
-                  <img 
-                    src={product.gambar} 
-                    alt={product.nama} 
-                    className="w-full h-full object-cover transition duration-500 group-hover:scale-105" 
-                  />
-                  {product.hargaCoret && (
-                    <div className="absolute top-1 left-1 md:top-2 md:left-2 bg-red-500 text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 uppercase">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-12">
+            {filteredAndSortedProducts.map((product) => (
+              <Link to={`/detail/${product.id}`} key={product.id} className="group cursor-pointer animate-fadeIn">
+                <div className="relative aspect-3/4 overflow-hidden bg-gray-50">
+                  <img src={product.gambar} alt={product.nama} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+                  {!product.isAvailability && (
+                    <div className="absolute inset-0 bg-white/40 flex items-center justify-center backdrop-blur-[1px]">
+                      <span className="bg-white/90 px-4 py-2 text-[10px] font-bold tracking-[0.2em] border border-stone-800 uppercase">Sold Out</span>
+                    </div>
+                  )}
+                  {product.isAvailability && product.hargaCoret && (
+                    <div className="absolute top-1 left-1 md:top-2 md:left-2 bg-red-600 text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 uppercase shadow-sm">
                       SAVE RP {(product.hargaCoret - product.harga).toLocaleString('id-ID')}
                     </div>
                   )}
                 </div>
-
-                <div className="mt-3 md:mt-6 text-center px-1 md:px-2">
-                  <h4 className="text-[9px] md:text-[11px] font-bold tracking-widest text-stone-800 uppercase mb-1 md:mb-2 leading-relaxed line-clamp-2 group-hover:underline">
-                    {product.nama}
-                  </h4>
-                  <div className="flex flex-col md:flex-row justify-center items-center gap-0.5 md:gap-2">
-                    <span className="text-[10px] md:text-xs text-red-600 font-bold">
-                      RP {product.harga.toLocaleString('id-ID')}
-                    </span>
-                    {product.hargaCoret && (
-                      <span className="text-[8px] md:text-[10px] text-gray-400 line-through italic">
-                        RP {product.hargaCoret.toLocaleString('id-ID')}
-                      </span>
-                    )}
+                <div className="mt-4 text-center px-2">
+                  <h4 className="text-[10px] md:text-[11px] font-bold tracking-widest text-stone-800 uppercase mb-2 line-clamp-2">{product.nama}</h4>
+                  <div className="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2">
+                    <span className="text-[11px] md:text-sm text-red-600 font-bold">RP {product.harga.toLocaleString('id-ID')}</span>
+                    {product.hargaCoret && <span className="text-[9px] md:text-[11px] text-gray-400 line-through italic font-light font-sans">RP {product.hargaCoret.toLocaleString('id-ID')}</span>}
                   </div>
-                  <p className="text-[10px] md:text-[10px] text-gray-400 mt-2 uppercase tracking-[0.2em] font-medium">
-                    {product.kategori}
-                  </p>
+                  <p className="text-[9px] text-gray-400 mt-2 uppercase tracking-[0.2em] font-medium italic">{product.kategori}</p>
                 </div>
               </Link>
             ))}
           </div>
-          )}
         </main>
       </div>
     </div>

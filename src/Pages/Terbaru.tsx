@@ -35,9 +35,6 @@ const Terbaru = () => {
             <h2 className="font-serif text-3xl text-stone-800">New Arrivals</h2>
             <p className="text-stone-500 text-sm mt-2">Koleksi pilihan yang baru saja mendarat di galeri kami.</p>
           </div>
-          <button className="text-xs font-bold tracking-widest uppercase border-b border-stone-800 pb-1 hover:text-stone-500 hover:border-stone-500 transition">
-            View All Series
-          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
