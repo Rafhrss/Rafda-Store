@@ -1,4 +1,5 @@
 import { listProducts } from "../data/products";
+import { Link } from "react-router-dom";
 
 const Terbaru = () => {
   // Mengambil produk yang memiliki properti isNew: true
@@ -45,30 +46,32 @@ const Terbaru = () => {
                 index === 0 ? "md:col-span-8" : "md:col-span-4"
               }`}
             >
-              <div className="relative overflow-hidden aspect-4/5 md:aspect-auto md:h-125 bg-stone-50">
-                <img 
-                  src={product.gambar} 
-                  alt={product.nama}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                
-                <div className="absolute top-6 left-6 space-y-2">
-                  <span className="block bg-white/90 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 shadow-sm text-stone-800">
-                    New Release
-                  </span>
+              <Link to={`/detail/${product.id}`}>
+                <div className="relative overflow-hidden aspect-4/5 md:aspect-auto md:h-125 bg-stone-50">
+                  <img 
+                    src={product.gambar} 
+                    alt={product.nama}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  
+                  <div className="absolute top-6 left-6 space-y-2">
+                    <span className="block bg-white/90 backdrop-blur-md text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 shadow-sm text-stone-800">
+                      New Release
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
-                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
 
-              <div className="mt-6 flex justify-between items-start">
-                <div>
-                  <span className="text-[10px] text-stone-400 uppercase tracking-widest">{product.kategori}</span>
-                  <h3 className="font-serif text-xl text-stone-800 mt-1 uppercase">{product.nama}</h3>
+                <div className="mt-6 flex justify-between items-start">
+                  <div>
+                    <span className="text-[10px] text-stone-400 uppercase tracking-widest">{product.kategori}</span>
+                    <h3 className="font-serif text-xl text-stone-800 mt-1 uppercase">{product.nama}</h3>
+                  </div>
+                  <p className="text-sm font-medium text-stone-700">
+                    Rp {product.harga.toLocaleString('id-ID')}
+                  </p>
                 </div>
-                <p className="text-sm font-medium text-stone-700">
-                  Rp {product.harga.toLocaleString('id-ID')}
-                </p>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
