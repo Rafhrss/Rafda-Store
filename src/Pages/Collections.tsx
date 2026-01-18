@@ -11,8 +11,8 @@ const Collections = () => {
   const [sortBy, setSortBy] = useState<string>('default');
 
   const [openFilters, setOpenFilters] = useState({
-    availability: true,
-    productType: true
+    availability: false,
+    productType: false
   });
 
   const toggleFilter = (section: keyof typeof openFilters) => {
@@ -66,16 +66,16 @@ const Collections = () => {
 
         {/* Sort By Dropdown */}
         <div className="flex items-center gap-3">
-          <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">Sort By</label>
+          <label className="text-[13px] font-bold tracking-widest text-gray-400 uppercase">Sort By</label>
           <select 
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="text-[10px] font-bold uppercase tracking-widest text-stone-700 bg-transparent border-none focus:ring-0 cursor-pointer outline-none"
+            className="text-[13px] font-bold uppercase tracking-widest text-stone-700 bg-transparent border-none focus:ring-0 cursor-pointer outline-none"
           >
             <option value="default">Featured</option>
-            <option value="name-az">Alphabetically, A-Z</option>
-            <option value="price-low">Price, Low to High</option>
-            <option value="price-high">Price, High to Low</option>
+            <option value="name-az">Alphabet, A-Z</option>
+            <option value="price-low">Price Low - High</option>
+            <option value="price-high">Price High - Low</option>
           </select>
         </div>
       </div>
@@ -129,35 +129,61 @@ const Collections = () => {
           </div>
         </aside>
 
-        {/* PRODUCT GRID */}
+{/* PRODUCT GRID */}
         <main className="flex-1">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-12">
-            {filteredAndSortedProducts.map((product) => (
-              <Link to={`/detail/${product.id}`} key={product.id} className="group cursor-pointer animate-fadeIn">
-                <div className="relative aspect-3/4 overflow-hidden bg-gray-50">
-                  <img src={product.gambar} alt={product.nama} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
-                  {!product.isAvailability && (
-                    <div className="absolute inset-0 bg-white/40 flex items-center justify-center backdrop-blur-[1px]">
-                      <span className="bg-white/90 px-4 py-2 text-[10px] font-bold tracking-[0.2em] border border-stone-800 uppercase">Sold Out</span>
-                    </div>
-                  )}
-                  {product.isAvailability && product.hargaCoret && (
-                    <div className="absolute top-1 left-1 md:top-2 md:left-2 bg-red-600 text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 uppercase shadow-sm">
-                      SAVE RP {(product.hargaCoret - product.harga).toLocaleString('id-ID')}
-                    </div>
-                  )}
-                </div>
-                <div className="mt-4 text-center px-2">
-                  <h4 className="text-[10px] md:text-[11px] font-bold tracking-widest text-stone-800 uppercase mb-2 line-clamp-2">{product.nama}</h4>
-                  <div className="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2">
-                    <span className="text-[11px] md:text-sm text-red-600 font-bold">RP {product.harga.toLocaleString('id-ID')}</span>
-                    {product.hargaCoret && <span className="text-[9px] md:text-[11px] text-gray-400 line-through italic font-light font-sans">RP {product.hargaCoret.toLocaleString('id-ID')}</span>}
+          {/* PERBAIKAN: Cek jika produk kosong, tampilkan desain sesuai permintaan Anda */}
+          {filteredAndSortedProducts.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20 animate-fadeIn">
+
+              <p className="text-stone-400 font-serif italic mb-6">
+                Maaf, koleksi yang Anda cari sedang tidak tersedia.
+              </p>
+
+              {/* Tombol Reset */}
+              <button 
+                onClick={() => {
+                  setSelectedCategory('all'); 
+                  setInStockOnly(false);
+                  setSortBy('default');
+                }} 
+                className="text-[10px] font-bold underline uppercase tracking-[0.2em] text-stone-800 hover:text-sky-500 transition"
+                >Lihat Semua Koleksi
+              </button>
+            </div>
+          ) : (
+            /* Jika ada produk, baru tampilkan grid ini */
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-12">
+              {filteredAndSortedProducts.map((product) => (
+                <Link to={`/detail/${product.id}`} key={product.id} className="group cursor-pointer animate-fadeIn">
+                  <div className="relative aspect-3/4 overflow-hidden bg-gray-50">
+                    <img src={product.gambar} alt={product.nama} className="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+                    {!product.isAvailability && (
+                      <div className="absolute inset-0 bg-white/40 flex items-center justify-center backdrop-blur-[1px]">
+                        <span className="bg-white/90 px-4 py-2 text-[10px] font-bold tracking-[0.2em] border border-stone-800 uppercase">Sold Out</span>
+                      </div>
+                    )}
+                    {product.isAvailability && product.hargaCoret && (
+                      <div className="absolute top-1 left-1 md:top-2 md:left-2 bg-red-600 text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 uppercase shadow-sm">
+                        SAVE RP {(product.hargaCoret - product.harga).toLocaleString('id-ID')}
+                      </div>
+                    )}
                   </div>
-                  <p className="text-[9px] text-gray-400 mt-2 uppercase tracking-[0.2em] font-medium italic">{product.kategori}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  <div className="mt-4 text-center px-2">
+                    <h4 className="text-[10px] md:text-[11px] font-bold tracking-widest text-stone-800 uppercase mb-2 line-clamp-2">{product.nama}</h4>
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2">
+                      <span className="text-[11px] md:text-sm text-red-600 font-bold">RP {product.harga.toLocaleString('id-ID')}</span>
+                      {product.hargaCoret && (
+                        <span className="text-[9px] md:text-[11px] text-gray-400 line-through italic font-light font-sans">
+                          RP {product.hargaCoret.toLocaleString('id-ID')}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[9px] text-gray-400 mt-2 uppercase tracking-[0.2em] font-medium italic">{product.kategori}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </main>
       </div>
     </div>
