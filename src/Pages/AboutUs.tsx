@@ -1,4 +1,5 @@
 import { listProducts } from "../data/products"
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   const heroProduct = listProducts.find(product => product.id === 7);
@@ -100,9 +101,11 @@ const AboutUs = () => {
         <p className="text-stone-500 mb-10 max-w-lg mx-auto text-sm leading-relaxed">
           Temukan koleksi yang paling sesuai dengan karakter Anda dan rasakan kenyamanan berbusana syar'i bersama kami.
         </p>
-        <button className="inline-block border border-stone-800 text-stone-800 px-10 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-stone-800 hover:text-white transition-all duration-500">
-          Lihat Koleksi Terbaru
-        </button>
+        <Link to="/terbaru">
+          <button className="inline-block border border-stone-800 text-stone-800 px-10 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-stone-800 hover:text-white transition-all duration-500">
+            Lihat Koleksi Terbaru
+          </button>
+        </Link>
       </section>
     </div>
   )

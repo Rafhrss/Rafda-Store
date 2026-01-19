@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { listProducts } from "../data/products"
 import Testimoni from "../components/Testimoni";
+import SosialMedia from "../components/SosialMedia";
 
 const HomePage = () => {
   // Mengambil gambar spesifik untuk Hero Banner (ID 7)
@@ -71,6 +72,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      <SosialMedia />
       <Testimoni/>
     </>
   )
