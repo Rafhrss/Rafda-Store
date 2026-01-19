@@ -6,6 +6,7 @@ import Terbaru from "./Pages/Terbaru";
 import AboutUs from "./Pages/AboutUs";
 import Detail from "./components/Detail";
 import ScrollToTop from "./components/ScrollToTop";
+import Bantuan from "./Pages/Bantuan";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/terbaru" element={<Terbaru />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/bantuan" element={<Bantuan />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

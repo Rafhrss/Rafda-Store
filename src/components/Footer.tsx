@@ -39,10 +39,10 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-6 uppercase text-xs tracking-widest">Bantuan</h4>
             <ul className="space-y-4 text-sm font-light">
-              <li><Link to="/koleksi" className="hover:text-white transition">Koleksi Terbaru</Link></li>
-              <li><a href="#" className="hover:text-white transition">Cara Order</a></li>
-              <li><a href="#" className="hover:text-white transition">Informasi Pengiriman</a></li>
-              <li><a href="#" className="hover:text-white transition">Kebijakan Pengembalian</a></li>
+              <li><Link to="/terbaru" className="hover:text-white transition">Koleksi Terbaru</Link></li>
+              <li><Link to="/bantuan#caraorder" className="hover:text-white transition">Cara Order</Link></li>
+              <li><Link to="/bantuan#pengiriman" className="hover:text-white transition">Informasi Pengiriman</Link></li>
+              <li><Link to="/bantuan#pengembalian" className="hover:text-white transition">Kebijakan Pengembalian</Link></li>
             </ul>
           </div>
 

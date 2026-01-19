@@ -23,17 +23,17 @@ import { Instagram, Facebook } from 'lucide-react';
 
         {/* SOCIAL ICONS BAR */}
         <div className="flex justify-center gap-10 mb-16 text-stone-400">
-          <a href="#" className="flex items-center gap-2 hover:text-stone-800 transition group">
+          <a href="https://www.instagram.com/aisyah.nurfa.3?igsh=MTgyYWJ1aTIxeXRtMg==" target='_blank' className="flex items-center gap-2 hover:text-stone-800 transition group">
             <Instagram size={18} className="group-hover:scale-110 transition" />
             <span className="text-[10px] uppercase tracking-widest font-bold">Instagram</span>
           </a>
-          <a href="#" className="flex items-center gap-2 hover:text-stone-800 transition group">
+          <a href="https://www.tiktok.com/@aisyahcollection05?_r=1&_t=ZS-93CgOd8sVm9" target='_blank' className="flex items-center gap-2 hover:text-stone-800 transition group">
             <svg width={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 group-hover:scale-110 transition">
               <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
             </svg>
             <span className="text-[10px] uppercase tracking-widest font-bold">TikTok</span>
           </a>
-          <a href="#" className="flex items-center gap-2 hover:text-stone-800 transition group">
+          <a href="https://www.facebook.com/share/18ALJmKcrq/" target='_blank' className="flex items-center gap-2 hover:text-stone-800 transition group">
             <Facebook size={18} className="group-hover:scale-110 transition" />
             <span className="text-[10px] uppercase tracking-widest font-bold">Facebook</span>
           </a>
