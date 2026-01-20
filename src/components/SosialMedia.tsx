@@ -1,14 +1,7 @@
+import { socialFeed } from '../data/Sosmed';
 import { Instagram, Facebook } from 'lucide-react';
 
   const SosialMedia = () => {
-  // Data dummy untuk simulasi feed Instagram
-  const socialFeed = [
-    { id: 1, img: "https://images.unsplash.com/photo-1583394838336-acd977730f8a?q=80&w=500", type: "instagram" },
-    { id: 2, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=500", type: "tiktok" },
-    { id: 3, img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=500", type: "instagram" },
-    { id: 4, img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=500", type: "facebook" },
-  ];
-
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
