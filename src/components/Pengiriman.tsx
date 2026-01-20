@@ -1,12 +1,7 @@
 import { Truck, MapPin, ShieldCheck, Clock } from 'lucide-react';
+import { shippingPartners } from '../data/Helper';
 
 const Pengiriman = () => {
-  const shippingPartners = [
-    { name: "J&T Express", desc: "Pengiriman kilat dan terpercaya ke seluruh pelosok negeri." },
-    { name: "JNE", desc: "Pilihan utama dengan berbagai layanan mulai dari reguler hingga YES." },
-    { name: "Kantor Pos", desc: "Jangkauan terjauh hingga ke desa-desa terpencil di Indonesia." },
-    { name: "TiKi", desc: "Solusi pengiriman aman dengan pengalaman puluhan tahun." }
-  ];
 
   return (
     <>

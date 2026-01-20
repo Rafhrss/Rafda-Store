@@ -1,32 +1,6 @@
-import { ShoppingBag, Ruler, MessageCircle, Truck } from 'lucide-react';
+import { steps } from '../data/Helper';
 
 const Order = () => {
-  const steps = [
-    {
-      id: 1,
-      title: "Pilih Koleksi",
-      description: "Jelajahi galeri kami dan klik pada pakaian syar'i yang Anda inginkan untuk melihat detail lengkapnya.",
-      icon: <ShoppingBag className="w-6 h-6" />,
-    },
-    {
-      id: 2,
-      title: "Pilih Ukuran & Jumlah",
-      description: "Pilih ukuran yang sesuai (S/M/L/XL) dan tentukan jumlah pakaian yang ingin Anda pesan.",
-      icon: <Ruler className="w-6 h-6" />,
-    },
-    {
-      id: 3,
-      title: "Pesan via WhatsApp",
-      description: "Klik tombol 'Pesan di WhatsApp'. Sistem kami akan otomatis menyiapkan pesan berisi detail pesanan Anda.",
-      icon: <MessageCircle className="w-6 h-6" />,
-    },
-    {
-      id: 4,
-      title: "Konfirmasi & Kirim",
-      description: "Kirim pesan tersebut ke admin kami. Tunggu konfirmasi total biaya dan instruksi pembayaran.",
-      icon: <Truck className="w-6 h-6" />,
-    },
-  ];
 
   return (
     <>
