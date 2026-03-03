@@ -3,8 +3,6 @@ import fendi1 from "../assets/NewRelease/fendi_denim.jpeg";
 import fendi2 from "../assets/NewRelease/fendi_army.jpeg";
 import fendi3 from "../assets/NewRelease/fendi_bata.jpeg";
 import fendi4 from "../assets/NewRelease/fendi_burgundi.jpeg";
-import fendi5 from "../assets/NewRelease/fendi_grey.jpeg";
-import fendi6 from "../assets/NewRelease/fendi_olive.jpeg";
 
 export interface Variant {
   warna: string;
