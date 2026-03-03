@@ -12,5 +12,5 @@ export const listCategories: Category[] = [
   { id: 3, slug: 'khimar-bergo', name: 'Khimar & Bergo' },
   { id: 4, slug: 'menswear', name: 'Menswear' },
   { id: 5, slug: 'outer', name: 'Outer' },
-  { id: 6, slug: 'kokoh', name: 'Kokoh' },
+  { id: 6, slug: 'koko', name: 'Koko' },
 ];

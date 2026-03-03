@@ -6,6 +6,8 @@ import './index.css'
 import App from './App.tsx'
 import Navbar from './components/Navbar.tsx'
 import Footer from './components/Footer.tsx'
+import { inject } from "@vercel/analytics"
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,3 +18,5 @@ createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </StrictMode>,
 )
+
+inject();
